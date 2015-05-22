@@ -7,4 +7,11 @@ First of all, update your system using the "Software Updater", and then type:
 $ sudo apt-get update
 ```
 
-## 
+## Install development tools and required libraries
+
+``` shell
+$ sudo apt-get install build-essential automake autoconf
+$ sudo apt-get install libboost-regex-dev libicu-dev <b>zlib1g-dev</b>
+$ sudo apt-get install libboost-system-dev libboost-program-options-dev
+
+```
