@@ -127,7 +127,7 @@ In order to call the FreeLing library from Java, first we must install SWIG:
 $ sudo apt-get install swig
 ```
 
-## Edit file `Makefile`
+## Edit `Makefile`
 Now, you have to set the following variables to the right values of your system:
 
 ```
