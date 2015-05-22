@@ -4,14 +4,14 @@
 ## Run "Software Updater"
 First of all, update your system using the "Software Updater", and then type:
 
-``` shell
+```
 $ sudo apt-get update
 ```
 
 ## Install development tools and required libraries
 The main difference with the official installation guide is including `zlib1g-dev`.
 
-``` shell
+```
 $ sudo apt-get install build-essential automake autoconf
 $ sudo apt-get install libboost-regex-dev libicu-dev zlib1g-dev
 $ sudo apt-get install libboost-system-dev libboost-program-options-dev
@@ -20,19 +20,19 @@ $ sudo apt-get install libboost-system-dev libboost-program-options-dev
 ## Download and Install FreeLing source code
 You can download the latest FreeLing version from [here](http://devel.cpl.upc.edu/freeling/downloads?order=time&desc=1). We shall use in this guide version 3.1.
 
-```shell
+```
 $ tar xzvf freeling-3.1.tar.gz
 $ cd freeling-3.1
 ```
 ## Configuring
 Within the FreeLing directory, type:
 
-``` shell
+```
 $ ./configure
 ```
 
 In case you get the following error:
-```shell
+```
 checking for zlib.h... no
 
    zlib.h not found.
@@ -41,7 +41,53 @@ checking for zlib.h... no
    You may need to set CPPFLAGS to specify search path.
 ```
 
-you can do `$ sudo apt-get install zlib1g-dev`
+you can type:
+````
+$ sudo apt-get install zlib1g-dev
+```
+
+In case you get the following message:
+```
+checking for main in -lboost_thread-gcc-mt... no
+
+   boost_thread library not found.
+   Make sure libboost_thread is
+   installed and can be found in a standard path.
+   You may need to set LDFLAGS to specify search path.
+```
+
+the solution is typing:
+
+```
+$ sudo apt-get install libboost-thread-dev
+```
+
+## Building the binaries
+Inside the FreeLing folder, just type:
+```
+$ make
+```
+
+Should you get the following error:
+
+```
+corrector/dicc2phon-dicc2phon.o: In function `_GLOBAL__sub_I_main':
+dicc2phon.cc:(.text.startup+0x2c): undefined reference to `boost::system::generic_category()'
+dicc2phon.cc:(.text.startup+0x36): undefined reference to `boost::system::generic_category()'
+dicc2phon.cc:(.text.startup+0x40): undefined reference to `boost::system::system_category()'
+collect2: error: ld returned 1 exit status
+```
+
+the solution is running again the `./configure` script with the following variables set:
+
+```
+CXXFLAGS=-lboost_system CPPFLAGS=-lboost_system LIBS=-lboost_system ./configure
+```
+
+For more information on this topic, please refer to the following threads in the FreeLing Forum:
+  * [-lboost_system option is missing](http://nlp.lsi.upc.edu/freeling/index.php?option=com_simpleboard&Itemid=&func=view&catid=5&id=4013#4013)
+  * [Freeling 3.1 -- Ubuntu 14.04](http://nlp.lsi.upc.edu/freeling/index.php?option=com_simpleboard&Itemid=65&func=view&id=3872&catid=5)
+
 
 
 
