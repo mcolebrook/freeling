@@ -88,6 +88,40 @@ For more information on this topic, please refer to the following threads in the
   * [-lboost_system option is missing](http://nlp.lsi.upc.edu/freeling/index.php?option=com_simpleboard&Itemid=&func=view&catid=5&id=4013#4013)
   * [Freeling 3.1 -- Ubuntu 14.04](http://nlp.lsi.upc.edu/freeling/index.php?option=com_simpleboard&Itemid=65&func=view&id=3872&catid=5)
 
+## Installing
+Once the source is compiled, you can install it using:
+
+```
+$ sudo make install
+```
+
+FreeLing library is entirely contained in the file `libfreeling.so` which is located in `/usr/local/lib` by default. Sample program `analyze` is installed in `/usr/local/bin`.
+
+## Testing FreeLing
+
+You may check FreeLing by typing the following lines:
+```
+$ analyze -f es.cfg
+Hola FreeLing, este es mi primer mensaje.
+Hola hola I 1
+FreeLing freeling NP00000 1
+, , Fc 1
+este este PD0MS000 0.0314658
+es ser VSIP3S0 1
+mi mi DP1CSS 0.999101
+primer 1 AO0MS0 1
+mensaje mensaje NCMS000 1
+. . Fp 1
+^C
+```
+
+## Installing Java JDK
+First, read the file located in `freeling-3.1/APIs/java/README`. Then, type:
+```
+$ sudo apt-get install openjdk-7-jdk
+```
+
+
 
 
 
