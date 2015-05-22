@@ -116,7 +116,7 @@ mensaje mensaje NCMS000 1
 ```
 
 ## Installing Java JDK
-First, read the file located in `freeling-3.1/APIs/java/README`. Then, type:
+First, move to `freeling-3.1/APIs/java` and read the file `README`. Then, type:
 ```
 $ sudo apt-get install openjdk-7-jdk
 ```
@@ -127,7 +127,7 @@ In order to call the FreeLing library from Java, first we must install SWIG:
 $ sudo apt-get install swig
 ```
 
-## Edit file `freeling-3.1/APIs/java/Makefile`
+## Edit file `Makefile`
 Now, you have to set the following variables to the right values of your system:
 
 ```
@@ -141,7 +141,7 @@ SWIGDIR = /usr/share/swig2.0
 JAVADIR = /usr/lib/jvm/java-7-openjdk-i386
 ```
 
-Also, we had to add `-lboost_system` to the following line:
+Also, we had to add `-lboost_system` to the following line to avoid compiling errors:
 
 ```
 $(GCC) -shared -o libfreeling_javaAPI.so freeling_javaAPI.cxx -lfreeling -lboost_system -L$(FREELINGDIR)/lib -I$(FREELINGDIR)/include -I$(JAVADIR)/include -I$(JAVADIR)/include/linux -fPIC
@@ -168,13 +168,20 @@ $ export LD_LIBRARY_PATH=/usr/local/lib:$FREELINGDIR/APIs/java
 $ export CLASSPATH=$FREELINGDIR/APIs/java
 ```
 
-**Remember to 
+**REMEMBER:** to put these lines in your starting shell scripts: .bashrc, .cshrc, etc.
 
-15. Compilar y ejecutar el ejemplo de Java
+## Compile and run a Java example
+Compile the `Analyzer.java` file:
 
+```
 $ javac Analyzer.java
+```
+
+Finally, just test the new libraries by typing:
+```
 $ java Analyzer
 Hola, este es un mensaje para el ejemplo de Java.
+...
+```
 
-
-
+**CONGRATULATIONS!!**. Now you can work with FreeLing using Java!
