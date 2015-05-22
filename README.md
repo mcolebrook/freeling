@@ -1,4 +1,4 @@
-# Install and compile FreeLing 3.1 source code in Ubuntu 14.04.2 Desktop LTS (32 bits)
+# Install and compile FreeLing 3.1 source code in Ubuntu 14.04.2 Desktop LTS (32 bits) to use it with Java
 [FreeLing] (http://nlp.lsi.upc.edu/freeling) is an open source language analysis tool suite. These installation guide is based both on the official FreeLing [source installation manual] (http://nlp.lsi.upc.edu/freeling/doc/userman/html/node12.html) and on my personal experience.
 
 ## Run "Software Updater"
@@ -121,7 +121,60 @@ First, read the file located in `freeling-3.1/APIs/java/README`. Then, type:
 $ sudo apt-get install openjdk-7-jdk
 ```
 
+## Installl SWIG
+In order to call the FreeLing library from Java, first we must install SWIG:
+```
+$ sudo apt-get install swig
+```
 
+## Edit file `freeling-3.1/APIs/java/Makefile`
+Now, you have to set the following variables to the right values of your system:
+
+```
+# directory prefix where you installed FreeLing (by default in /usr/local)
+FREELINGDIR = /usr/local
+
+# directory where swig share files are installed in your system
+SWIGDIR = /usr/share/swig2.0
+
+# directory where the JVM is installed
+JAVADIR = /usr/lib/jvm/java-7-openjdk-i386
+```
+
+Also, we had to add `-lboost_system` to the following line:
+
+```
+$(GCC) -shared -o libfreeling_javaAPI.so freeling_javaAPI.cxx -lfreeling -lboost_system -L$(FREELINGDIR)/lib -I$(FREELINGDIR)/include -I$(JAVADIR)/include -I$(JAVADIR)/include/linux -fPIC
+```
+
+## Compile
+Just type:
+
+```
+$ make
+```
+
+## Set the env variables
+You have to set the following environment variables to the right values of your installation:
+
+```
+# directory where you have put the FreeLing folder (in my case, I moved it to /opt/freeling-3.1)
+$ export FREELINGDIR=/opt/freeling-3.1
+
+# add to LD_LIBRARY_PATH the following directories which contain libfreeling.so and libfreeling_javaAPI.so
+$ export LD_LIBRARY_PATH=/usr/local/lib:$FREELINGDIR/APIs/java
+
+# path to the package freeling.jar
+$ export CLASSPATH=$FREELINGDIR/APIs/java
+```
+
+**Remember to 
+
+15. Compilar y ejecutar el ejemplo de Java
+
+$ javac Analyzer.java
+$ java Analyzer
+Hola, este es un mensaje para el ejemplo de Java.
 
 
 
