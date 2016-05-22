@@ -84,6 +84,12 @@ the solution is running again the `./configure` script with the following variab
 CXXFLAGS=-lboost_system CPPFLAGS=-lboost_system LIBS=-lboost_system ./configure
 ```
 
+and re-run the `make` command:
+
+```
+$ make
+```
+
 For more information on this topic, please refer to the following threads in the FreeLing Forum:
   * [-lboost_system option is missing](http://nlp.lsi.upc.edu/freeling/index.php?option=com_simpleboard&Itemid=&func=view&catid=5&id=4013#4013)
   * [Freeling 3.1 -- Ubuntu 14.04](http://nlp.lsi.upc.edu/freeling/index.php?option=com_simpleboard&Itemid=65&func=view&id=3872&catid=5)
