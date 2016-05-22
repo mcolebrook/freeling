@@ -190,4 +190,6 @@ Hola, este es un mensaje para el ejemplo de Java.
 ...
 ```
 
-**CONGRATULATIONS!!**. Now you can work with FreeLing using Java!
+**DO NOT FORGET** to finish your line with a full stop `'.'` to avoid empty results.
+
+**CONGRATULATIONS!!** Now you can work with FreeLing using Java!
