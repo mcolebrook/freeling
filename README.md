@@ -42,7 +42,7 @@ checking for zlib.h... no
 ```
 
 you can type:
-````
+```
 $ sudo apt-get install zlib1g-dev
 ```
 
